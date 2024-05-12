@@ -11,7 +11,7 @@ import pyautogui
 buy_covenants = True
 buy_mystics = True
 buy_85_red_gear = True
-buy_85_purple_gear = False
+buy_85_purple_gear = True
 
 # 「購入」ボタンのオフセット設定
 # アイテムアイコンの右側にあるボタンをクリックするためX座標とY座標のオフセットを調整する必要あり
@@ -65,6 +65,13 @@ if buy_85_red_gear:
         buy_85_red_gear = True
     else:
         buy_85_red_gear = False
+
+if buy_85_purple_gear:
+    ans_purple = str(input("85レジェンド装備が見つかったら一時停止しますか？ (y/n)"))
+    if ans_purple.lower().startswith('y'):
+        buy_85_purple_gear = True
+    else:
+        buy_85_purple_gear = False
 
 print(f"{start_timer}秒後に開始します。")
 print("停止する時はQ キーを押し続けてください...")
@@ -171,7 +178,7 @@ if in_shop:
                 g += price_m
 
         # 85赤装備
-        if buy_85_red_gear:
+        if buy_85_red_gear and not found_r:
             red = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "85_red_gear.png"), confidence=.90)
 
             if red:
@@ -185,7 +192,7 @@ if in_shop:
                 r += 1
 
         # 85紫装備
-        if buy_85_purple_gear:
+        if buy_85_purple_gear and not found_p:
             purple = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "85_purple_gear.png"), confidence=.90)
 
             if purple:
@@ -269,10 +276,10 @@ else:
 if c > 0 or m > 0 or r > 0 or p > 0 or total > 0:
     print(f"購入した聖約の栞: {c * 5}\n"
         f"購入した神秘メダル: {m * 50}\n"
-        f"発見した85赤装備: {r}\n"
-        f"発見した85紫装備: {p}\n"
         f"消費したゴールド: {g:,}\n"
         f"消費した天空石: {total * 3}"
+        f"発見した85赤装備: {r}\n"
+        f"発見した85紫装備: {p}\n"
     )
 else:
     print("なんの成果も!!得られませんでした!!")
