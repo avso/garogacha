@@ -104,7 +104,7 @@ if in_shop:
             if covenant and not bought_c:
                 # 当該アイテムの右側にある「購入」ボタンを押下する
                 covenant_buy_button_x, covenant_buy_button_y = covenant
-                pyautogui.click(int(covenant_buy_button_x) + button_offset_x, int(covenant_buy_button_y) + button_offset_y, button='left', clicks=2)
+                pyautogui.click(int(covenant_buy_button_x) + button_offset_x, int(covenant_buy_button_y) + button_offset_y, button='left', clicks=2, interval=0.5)
 
                 wait(0.5)
 
@@ -114,7 +114,7 @@ if in_shop:
                 # 確認用のボタンを検出できなかったら何回かリトライする
                 retries = 0
                 while covenant_confirm_buy_button is None and retries < 3:
-                    pyautogui.click(int(covenant_buy_button_x) + button_offset_x, int(covenant_buy_button_y) + button_offset_y, button='left', clicks=2)
+                    pyautogui.click(int(covenant_buy_button_x) + button_offset_x, int(covenant_buy_button_y) + button_offset_y, button='left', clicks=2, interval=0.5)
                     wait(1)
                     covenant_confirm_buy_button = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "covenant_buy_button.png"), confidence=.80)
                     retries += 1
@@ -125,7 +125,7 @@ if in_shop:
                     continue
 
                 # 確認用のボタンを押下する
-                pyautogui.click(covenant_confirm_buy_button, button='left', clicks=2)
+                pyautogui.click(covenant_confirm_buy_button, button='left', clicks=2, interval=0.5)
 
                 # アニメーションが終わるのを待つ
                 wait(3)
@@ -144,7 +144,7 @@ if in_shop:
             if mystic and not bought_m:
                 # 当該アイテムの右側にある「購入」ボタンを押下する
                 mystic_buy_button_x, mystic_buy_button_y = mystic
-                pyautogui.click(int(mystic_buy_button_x) + button_offset_x, int(mystic_buy_button_y) + button_offset_y, button='left', clicks=2)
+                pyautogui.click(int(mystic_buy_button_x) + button_offset_x, int(mystic_buy_button_y) + button_offset_y, button='left', clicks=2, interval=0.5)
 
                 wait(0.5)
 
@@ -154,7 +154,7 @@ if in_shop:
                 # 確認用のボタンを検出できなかったら何回かリトライする
                 retries = 0
                 while mystic_confirm_buy_button is None and retries < 3:
-                    pyautogui.click(int(mystic_buy_button_x) + button_offset_x, int(mystic_buy_button_y) + button_offset_y, button='left', clicks=2)
+                    pyautogui.click(int(mystic_buy_button_x) + button_offset_x, int(mystic_buy_button_y) + button_offset_y, button='left', clicks=2, interval=0.5)
                     wait(1)
                     retries += 1
                     mystic_confirm_buy_button = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "mystic_buy_button.png"), confidence=.80)
@@ -165,7 +165,7 @@ if in_shop:
                     continue
 
                 # 確認用のボタンを押下する
-                pyautogui.click(mystic_confirm_buy_button, button='left', clicks=2)
+                pyautogui.click(mystic_confirm_buy_button, button='left', clicks=2, interval=0.5)
 
                 # アニメーションが終わるのを待つ
                 wait(3)
@@ -179,7 +179,7 @@ if in_shop:
 
         # 85赤装備
         if buy_85_red_gear and not found_r:
-            red = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "85_red_gear.png"), confidence=.90)
+            red = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "85_red_gear.png"), confidence=.92)
 
             if red:
                 pyautogui.moveTo(red)
@@ -193,7 +193,7 @@ if in_shop:
 
         # 85紫装備
         if buy_85_purple_gear and not found_p:
-            purple = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "85_purple_gear.png"), confidence=.90)
+            purple = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "85_purple_gear.png"), confidence=.87)
 
             if purple:
                 pyautogui.moveTo(purple)
@@ -233,7 +233,7 @@ if in_shop:
 
         # 「更新」ボタンを押下
         # pyautogui.click(refresh_button, button='left')
-        pyautogui.click(refresh_button, button='left', clicks=2)
+        pyautogui.click(refresh_button, button='left', clicks=2, interval=0.5)
         wait(0.5)
 
         # 確認用ボタンの検出
@@ -242,7 +242,7 @@ if in_shop:
         # 確認用のボタンを検出できなかったら何回かリトライする
         retries = 0
         while refresh_button_confirm is None and retries < 3:
-            pyautogui.click(refresh_button, button='left', clicks=2)
+            pyautogui.click(refresh_button, button='left', clicks=2, interval=0.5)
             wait(1)
             refresh_button_confirm = pyautogui.locateCenterOnScreen(os.path.join(images_folder, "confirm_button.png"), confidence=.90)
             retries += 1
@@ -253,7 +253,7 @@ if in_shop:
             continue
 
         # 確認用のボタンを押下する
-        pyautogui.click(refresh_button_confirm, button='left', clicks=2)
+        pyautogui.click(refresh_button_confirm, button='left', clicks=2, interval=0.5)
 
         # フラグをリセット
         scrolled = False
